@@ -28,11 +28,11 @@ app.get("/test" , (req , res) => {
 
 app.post("/clothes" , (req , res) => {
   
-  const {name , brand , photos , price, ratings, description} = req.body;
+  const {name , brand , photos , price, rating, description} = req.body;
   console.log(req.body);
 
   const ClothesDoc = ClothesModel.create({
-    name , brand , photos , price, ratings , description,
+    name , brand , photos , price, rating , description,
   });
 
   res.json("Success");
@@ -43,6 +43,22 @@ app.post("/clothes" , (req , res) => {
 //   console.log(req.body);
 //   res.send("Success");
 // })
+
+// app.get("/clothes/:id", (req,res)=>{
+//   console.log(req.params.id);
+//   res.send("SUCCESS");
+// })
+
+app.get("/clothes/:id", async (req, res) => {
+  try {
+    const product = await ClothesModel.findById(req.params.id);
+    res.json(product);
+  } 
+  catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 
 app.get("/clothes" , async (req , res) => {

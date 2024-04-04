@@ -23,7 +23,7 @@ const ClothesSchema = new mongoose.Schema({
     brand : String,
     photos : String,
     price : Number,
-    rating : Number,
+    rating : String,
     description : String,
 });
 

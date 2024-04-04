@@ -21,7 +21,7 @@ const ClothFormPage = () => {
     e.preventDefault();
     try{
       const response = await axios.post("http://localhost:5000/clothes",product);
-      // console.log(response.data);
+      console.log(response.data);
       Navigator("/");
     }
     catch(err){

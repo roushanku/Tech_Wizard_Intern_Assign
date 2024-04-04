@@ -37,7 +37,7 @@ export default function Header() {
     </header>
     <div className="text-2xl text-center">
         <button className="border p-2 rounded bg-pink-400">
-          <Link to={"/addNewCloth"}>Add New Place</Link>
+          <Link to={"/addNewCloth"}>Add New Products</Link>
         </button>
       </div>
     </>
