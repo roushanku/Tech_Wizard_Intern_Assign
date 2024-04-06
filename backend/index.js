@@ -28,11 +28,11 @@ app.get("/test" , (req , res) => {
 
 app.post("/clothes" , (req , res) => {
   
-  const {name , brand , photos , price, rating, description} = req.body;
-  console.log(req.body);
+  const {name , brand , photos , price, rating, description , Quantity} = req.body;
+  // console.log(req.body);
 
   const ClothesDoc = ClothesModel.create({
-    name , brand , photos , price, rating , description,
+    name , brand , photos , price, rating , description, Quantity,
   });
 
   res.json("Success");
@@ -59,6 +59,33 @@ app.get("/clothes/:id", async (req, res) => {
   }
 });
 
+app.put("/clothes/:id" , async (req , res) => {
+  try {
+    const quantity = req.body.quantity;
+    // console.log(req.params.id);
+    console.log(quantity);
+    console.log("invoked...")
+    const updatedClothes = await ClothesModel.findByIdAndUpdate(req.params.id, { Quantity: quantity }, { new: true });
+    res.json(updatedClothes);
+  } 
+  catch(err) {
+    console.log("error" , err);
+    res.status(500).send(err);
+  }
+});
+
+app.post("/search",async (req,res)=>{
+  try{
+    const search_data = req.body.name;
+    const modified = await ClothesModel.find({ $or: [{ name: search_data }, { brand: search_data }] });
+
+    // console.log(modified);
+    res.json(modified);
+  }
+  catch(err){
+    res.send(err);
+  }
+});
 
 
 app.get("/clothes" , async (req , res) => {

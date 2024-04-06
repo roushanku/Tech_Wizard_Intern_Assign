@@ -1,6 +1,34 @@
 import { Link } from "react-router-dom";
 import ClothesPage from './page/ClothesPage'
+import { useState } from "react";
+import axios from "axios";
+
+// import { useNavigate, useParams } from "react-router-dom";
+import ProductCard from "./ProductCard";
+
 export default function Header() {
+  const [search , setSearch] = useState('');
+  const [products , setProducts] = useState([]);
+  const [available , setAvailable] = useState(false);
+
+  const handleChange = (e) => {
+    setSearch({ ...search, [e.target.name]: e.target.value });
+  };
+
+  const handleClick = async (ev) => {
+    ev.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/search",search);
+      // console.log(response.data);
+      setProducts(response.data);
+      if(response.data !== null) setAvailable(!available);
+    }
+
+    catch(err) {
+      console.log("error in searching" , err);
+    }
+  };
+
   return (<>
     <header className="flex justify-between">
     <Link to={"/clothes"} className="flex items-center gap-4">
@@ -39,6 +67,30 @@ export default function Header() {
         <button className="border p-2 rounded bg-pink-400">
           <Link to={"/addNewCloth"}>Add New Products</Link>
         </button>
+
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <input type="text" name="name" placeholder="Seach your products here..." onChange={handleChange} className="w-1/2 p-2 border border-gray-300 rounded my-2" />
+          <button onClick={handleClick} className="p-2 bg-blue-500 text-white rounded my-2">Search</button>
+        </div>
+
+        <div className="grid grid-cols-3 gap-4">
+          
+        {
+          available 
+            ? <h2 className="text-center mt-10 col-span-3 text-2xl underline">List of products available</h2>
+            : <h2 className="text-center mt-10 col-span-3 text-2xl underline">No products available</h2>
+        }
+
+        {products.map((product, id) => (
+          <div key={id} onClick={()=>{
+            // handleShowMore(product._id);
+          }}>
+            <ProductCard product={product} />
+          </div>
+        ))}
+
+      </div>
+
       </div>
     </>
   );

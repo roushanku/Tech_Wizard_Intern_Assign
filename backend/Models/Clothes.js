@@ -25,6 +25,7 @@ const ClothesSchema = new mongoose.Schema({
     price : Number,
     rating : String,
     description : String,
+    Quantity : String,
 });
 
 const ClothesModel = mongoose.model('Clothes' , ClothesSchema);

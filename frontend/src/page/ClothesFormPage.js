@@ -10,7 +10,8 @@ const ClothFormPage = () => {
     photos: '',
     rating: '',
     description: '',
-    price: ''
+    price: '',
+    Quantity : ''
   });
 
   const handleChange = (e) => {
@@ -42,6 +43,7 @@ const ClothFormPage = () => {
       <input type="text" name="rating" placeholder="Rating" onChange={handleChange} className="w-full p-2 border border-gray-300 rounded my-2" />
       <textarea name="description" placeholder="Description" onChange={handleChange} className="w-full p-2 border border-gray-300 rounded my-2"></textarea>
       <input type="text" name="price" placeholder="Price" onChange={handleChange} className="w-full p-2 border border-gray-300 rounded my-2" />
+      <input type="text" name="Quantity" placeholder="Quantity" onChange={handleChange} className="w-full p-2 border border-gray-300 rounded my-2" />
       <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded my-2">Save</button>
     </form>
     </>
