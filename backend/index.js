@@ -12,7 +12,6 @@ app.use(cors({origin: "http://localhost:3000", credentials: true}));
 
 //mongodb connection
 
-// zkBt2vzsGsCU7H9z
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -64,7 +63,7 @@ app.put("/clothes/:id" , async (req , res) => {
     const quantity = req.body.quantity;
     // console.log(req.params.id);
     console.log(quantity);
-    console.log("invoked...")
+    // console.log("invoked...")
     const updatedClothes = await ClothesModel.findByIdAndUpdate(req.params.id, { Quantity: quantity }, { new: true });
     res.json(updatedClothes);
   } 
