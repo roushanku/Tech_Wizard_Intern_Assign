@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import ClothesPage from './page/ClothesPage'
 import { useState } from "react";
 import axios from "axios";
+import QrScanner from "./page/QrScanner";
 
-// import { useNavigate, useParams } from "react-router-dom";
 import ProductCard from "./ProductCard";
 
 export default function Header() {
   const [search , setSearch] = useState('');
   const [products , setProducts] = useState([]);
   const [available , setAvailable] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
@@ -64,9 +65,14 @@ export default function Header() {
       </div>
     </header>
     <div className="text-2xl text-center">
-        <button className="border p-2 rounded bg-pink-400">
-          <Link to={"/addNewCloth"}>Add New Products</Link>
-        </button>
+        <div className="flex justify-center items-center p-4 gap-20">
+          <button className="border p-2 rounded bg-pink-400" onClick={() => setShowScanner(true)}>Scan Qr Code</button>
+          {showScanner && <QrScanner />}
+
+          <button className="border p-2 rounded bg-pink-400">
+            <Link to={"/addNewCloth"}>Add New Products</Link>
+          </button>
+      </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <input type="text" name="name" placeholder="Seach your products here..." onChange={handleChange} className="w-1/2 p-2 border border-gray-300 rounded my-2" />
