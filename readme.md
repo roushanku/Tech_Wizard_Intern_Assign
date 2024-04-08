@@ -43,7 +43,7 @@ application running on http://localhost:3000
 
 ## Note..
 Additional Information Make sure to set up your MongoDB connection
-string in the server\'s configuration file (server/config/default.json).
+string in the server\'s env file (server/.env(MONGO_URL = "")).
 You may need to adjust CORS settings if you\'re facing CORS-related
 issues. This can be done in the server code (usually in server.js or
 middleware).
