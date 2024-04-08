@@ -26,7 +26,7 @@ Navigate into the project directory: bash Copy code cd
 \<project-folder\>
 
 Install dependencies for both the client and server: bash Copy code cd
-client npm install cd .. cd server npm install cd ..
+frontend npm install cd .. cd backend npm install cd ..
 
 # Running the code
 Running the Project Once you have installed the dependencies, you can
@@ -50,13 +50,13 @@ middleware).
 
 # Feature exlpained
 Home page contains two button : 1) add products , 2)QR scanner 1) on
-clciking add product button a from will open fill the necessary
+clciking add product button a form will open fill the necessary
 information and save and click on \"city fasion icon\" on top left
 corner to see the all listed products. 2) click on QR scanner , it will
 ask for camera access , after that scan the QR code it will generate
 link click on link
 
-Each product card has two button "Show More" -> shows the more details like raung , description and quamtity remaining and "Buy products" -> it will ask to enter the quantity you want to buy and pay ask to pay required amount (altough payment console is not added yet)...
+Each product card has two button "Show More" -> shows the more details like rating , description and quantity remaining and "Buy products" -> it will ask to enter the quantity you want to buy and pay ask to pay required amount (altough payment console is not added yet)...
 
 There is Search Bar just below two button , You can type the name or
 brand of product for Searching\...
